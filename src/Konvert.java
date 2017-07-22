@@ -27,8 +27,8 @@ public class Konvert {
         byte[] arr;
         arr = text.getBytes(Charset.forName("UTF-8"));
         StringBuilder bin = new StringBuilder();
-        for (byte n : arr) {
-            int nilai = n;
+        for (byte b : arr) {
+            int nilai = b;
             for (int i = 0; i < 8; i++) {
                 bin.append((nilai & 128) == 0 ? 0 : 1);
                 nilai <<= 1;
