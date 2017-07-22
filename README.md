@@ -1,7 +1,7 @@
 # SteganografiLSBEnkripsi
 
-## First Install Netbeans 
+- First Install Netbeans 
 
-## Open with it
+- Open with it
 
-## Have learn
+- Have learn
