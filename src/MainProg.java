@@ -185,7 +185,7 @@ public class MainProg extends javax.swing.JFrame {
         byte[] txtByte = k.textToByte(g);
         BufferedImage gbr = null;
         try {
-            gbr = p.fetImage();
+            gbr = p.fetImage(lokasi);
         } catch (Exception ex) {
             Logger.getLogger(MainProg.class.getName()).log(Level.SEVERE, null, ex);
         }

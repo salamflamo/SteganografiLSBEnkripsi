@@ -17,16 +17,17 @@ import javax.imageio.ImageIO;
  * @author salamflamo
  */
 public class ProsesGambar {
-    private final String path;
-    public ProsesGambar(String path){
-        this.path = path;
-    }
+//    private final String path;
+//    public ProsesGambar(String path){
+//        this.path = path;
+//    }
 
-    public ProsesGambar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    public BufferedImage fetImage() throws Exception{
+//    public ProsesGambar() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//    
+
+    public BufferedImage fetImage(String path) throws Exception{
         File f = new File(path);
         BufferedImage gbr = ImageIO.read(f);
         return gbr;
@@ -38,7 +39,8 @@ public class ProsesGambar {
         
         for (byte b : txt) {
             for (int k = 7; k >= 0; k--) {
-                Color c = new Color(gbr.getRGB(j, i));
+                Color c;
+                c = new Color(gbr.getRGB(j, i));
                 byte biru = (byte)c.getBlue();
                 int merah = c.getRed();
                 int hijau = c.getGreen();
