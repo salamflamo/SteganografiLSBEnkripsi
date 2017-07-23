@@ -1,3 +1,5 @@
+package steganoenkrip;
+
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -19,14 +21,18 @@ public class ProsesGambar {
     public ProsesGambar(String path){
         this.path = path;
     }
+
+    public ProsesGambar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    BufferedImage fetImage() throws Exception{
+    public BufferedImage fetImage() throws Exception{
         File f = new File(path);
         BufferedImage gbr = ImageIO.read(f);
         return gbr;
     }
     
-    void sisipText(BufferedImage gbr, byte[] txt) throws Exception{
+    public void sisipText(BufferedImage gbr, byte[] txt) throws Exception{
         int i = 0;
         int j = 0;
         
@@ -45,9 +51,10 @@ public class ProsesGambar {
             i++;
         }
         gambarTersisip(gbr);
+        System.out.println("Text Hidden");
     }
     
-    void gambarTersisip(BufferedImage gbr){
+    public void gambarTersisip(BufferedImage gbr){
         try {
             File hasil = new File("Hasil.png");
             ImageIO.write(gbr, "png", hasil);
@@ -55,7 +62,7 @@ public class ProsesGambar {
         }
     }
     
-    BufferedImage stegGambar(){
+    public BufferedImage stegGambar(){
         File f = new File("Hasil.png");
         BufferedImage gbr = null;
         try {
@@ -65,7 +72,7 @@ public class ProsesGambar {
         return gbr;
     }
     
-    String bacaPesan(int panjangPesan, int offset){
+    public String bacaPesan(int panjangPesan, int offset){
         BufferedImage gbr = stegGambar();
         byte [] BytePesan = extractPesanTersembunyi(gbr, panjangPesan, offset);
         if (BytePesan == null) {
@@ -75,7 +82,7 @@ public class ProsesGambar {
         return (pesan);
     }
     
-    byte[] extractPesanTersembunyi(BufferedImage gbr, int ukuran, int offset){
+    public byte[] extractPesanTersembunyi(BufferedImage gbr, int ukuran, int offset){
         int i = 0;
         int j = 0;
         byte[] pesanTersembunyi = new byte[ukuran];

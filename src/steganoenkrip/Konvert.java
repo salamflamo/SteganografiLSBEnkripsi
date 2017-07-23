@@ -1,3 +1,5 @@
+package steganoenkrip;
+
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
@@ -13,7 +15,14 @@ import java.nio.charset.Charset;
  * @author salamflamo
  */
 public class Konvert {
-    void konToString (StringBuilder bin){
+    
+    /**
+     *
+     * @param bin
+     */
+    
+    
+    public void konToString (StringBuilder bin){
         try {
             BigInteger nilai = new BigInteger(""+bin, 2);
             byte[] bytegambar = nilai.toByteArray();
@@ -23,7 +32,7 @@ public class Konvert {
         }
     }
     
-    void konToBin(String text){
+    public void konToBin(String text){
         byte[] arr;
         arr = text.getBytes(Charset.forName("UTF-8"));
         StringBuilder bin = new StringBuilder();
@@ -37,12 +46,12 @@ public class Konvert {
         konToString(bin);
     }
     
-    byte[] textToByte(String text){
+    public byte[] textToByte(String text){
         byte[] arr =text.getBytes(Charset.forName("UTF-8"));
         return arr;
     }
     
-    void konToBin(byte[] barr){
+    public void konToBin(byte[] barr){
         StringBuilder bin = new StringBuilder();
         for(byte b : barr){
             int nilai = b;

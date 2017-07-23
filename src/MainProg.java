@@ -1,6 +1,13 @@
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -9,13 +16,15 @@ import javax.swing.JFileChooser;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import steganoenkrip.ProsesGambar;
+import steganoenkrip.Konvert;
 /**
  *
  * @author salamflamo
  */
 public class MainProg extends javax.swing.JFrame {
 
+    private String lokasi;
     /**
      * Creates new form MainProg
      */
@@ -70,6 +79,11 @@ public class MainProg extends javax.swing.JFrame {
         gambarpath.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton3.setText("Proses");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Garuda", 1, 18)); // NOI18N
         jLabel1.setText("Steganografi by Salamuddin, Jalaludin, Fatrurochim, Farah");
@@ -146,7 +160,43 @@ public class MainProg extends javax.swing.JFrame {
         ImageIcon gbr = new ImageIcon(gambarbaru);
         GbrAsal.setIcon(gbr);
         gambarpath.setText(namafile);
+        this.lokasi = namafile;
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        FileReader pesan = null;
+        try {
+            pesan = new FileReader(lokasi);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainProg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        BufferedReader in = new BufferedReader(pesan);
+        String s = "";
+        String g = "";
+        try {
+            while ((s = in.readLine()) != null) {
+                g += s;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainProg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Konvert k = new Konvert();
+        ProsesGambar p = new ProsesGambar();
+        byte[] txtByte = k.textToByte(g);
+        BufferedImage gbr = null;
+        try {
+            gbr = p.fetImage();
+        } catch (Exception ex) {
+            Logger.getLogger(MainProg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            p.sisipText(gbr,txtByte);
+        } catch (Exception ex) {
+            Logger.getLogger(MainProg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
